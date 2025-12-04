@@ -1,12 +1,20 @@
 import React, { useMemo, useRef, useLayoutEffect, useEffect } from 'react';
-import { useFrame, ThreeElements } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import gsap from 'gsap';
 import { ParticleData, ParticleShape } from '../types';
 
 declare global {
   namespace JSX {
-    interface IntrinsicElements extends ThreeElements {}
+    interface IntrinsicElements {
+      group: any;
+      mesh: any;
+      meshStandardMaterial: any;
+      points: any;
+      bufferGeometry: any;
+      bufferAttribute: any;
+      shaderMaterial: any;
+    }
   }
 }
 

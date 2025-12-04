@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Canvas, ThreeElements } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, ContactShadows } from '@react-three/drei';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import StarField from './StarField';
@@ -7,7 +7,12 @@ import MagicTree from './MagicTree';
 
 declare global {
   namespace JSX {
-    interface IntrinsicElements extends ThreeElements {}
+    interface IntrinsicElements {
+      color: any;
+      ambientLight: any;
+      spotLight: any;
+      pointLight: any;
+    }
   }
 }
 
@@ -69,7 +74,7 @@ const Experience: React.FC<ExperienceProps> = ({ isExploded }) => {
           />
 
           {/* Post Processing for Dazzling Effect */}
-          <EffectComposer disableNormalPass>
+          <EffectComposer enableNormalPass={false}>
             <Bloom 
                 luminanceThreshold={1.1} // Threshold to make lights pop
                 mipmapBlur 
